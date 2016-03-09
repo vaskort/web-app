@@ -1,10 +1,24 @@
 (function(){
+  var app = angular.module('app', ['satellizer', 'ngRoute']);
 
-  var app = angular.module('app', ['satellizer']);
+  app.config(function($routeProvider) {
+  	$routeProvider
+  		.when('/', {
+  			templateUrl: 'templates/login.html',
+  			controller: 'LoginCtrl'
+  		})
+  		.when('/list', {
+  			templateUrl: 'list.html',
+  			controller: 'flikrPhotoCtrl'
+  		})
+  		.otherwise({
+  			redirectTo: '/'
+  		});
+  });
 
   app.config(function($authProvider){
     $authProvider.google({
-      clientId: 'Google Client ID'
+      clientId: '620922501017-k0peditgs1h127do9r2d7ngqacio1nr8.apps.googleusercontent.com'
     });
   });
 

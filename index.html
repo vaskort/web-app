@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Web app</title>
   <!-- scripts -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.js"></script>
   <script src="http://cdn.jsdelivr.net/satellizer/0.14.0/satellizer.min.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
 </head>
-<body ng-app="app" ng-controller="GoogleCtrl">
-  <button ng-controller="LoginCtrl" ng-click="authenticate('google')">Sign in with Google</button>
+<body ng-app="app">
+  <div ng-view></div>
 </body>
 </html>

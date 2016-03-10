@@ -9,17 +9,18 @@
 @media screen and (max-width: 480px) {
 	.bottomPart {bottom: 0;}
 	.content {padding-top:5px;}
-	.filterWrapper input {width: 100%;left:0;top:0;}
 	.flickrContainer ul li {padding-bottom: 25px;}
 	.flickrContainer ul li.button {padding-bottom: 0;}
 	.flickrContainer ul li .image {display: block;float: left;width: 100%;}
 	.flickrContainer ul li .image a {height: 180px;}
 	.flickrContainer ul li .content {display: block;float: left;width: 100%;max-width: 100%;}
 	.bottomPart {position: relative;left: 0;}
-	.filterWrapper input {left: 0;top: -1px;} 
+	.filterWrapper input {left: 0;top: -1px;width: 100%;}
 	.flickrContainer {padding-left: 5px;padding-right: 5px;}
 	/*detail view*/
 	.descriptionContent img {width: 100%;margin-right:0;height: auto;}
 	/*load button*/
+	.loadMoreWrapper {padding-left: 5px;padding-right: 5px;}
 	.loadMoreWrapper button {width: 100%;}
+	.filterWrapper {border:0;padding-left:5px;padding-right: 5px;}
 }

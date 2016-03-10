@@ -27,20 +27,20 @@
       // apply() fixes a bug maybe that url does not get updated
       $scope.$apply();
     });
+
     $scope.$on('event:google-plus-signin-failure', function (event,authResult) {
       // Auth failure or signout detected
       return;
     });
+
   });
 
   app.controller('GoogleCtrl', function($scope, $http, ActivityStore){
     ActivityStore.list().then(function(response){
-      // $scope.feed = response;
-      console.log(response);
-
       // bring the first five items
       $scope.feed = response.slice(0,5);
 
+      // gets triggered when you click load more
       $scope.add = function () {
         // length of the first "short" array
         var length = $scope.feed.length;
@@ -65,6 +65,7 @@
     });
   });
 
+  // controller for the detailed activity view
   app.controller('activityDetailCtrl', function($scope, $routeParams, ActivityStore) {
     $scope.name = "activityDetailCtrl";
     ActivityStore.listItem($routeParams.id).then(function(response){
@@ -83,7 +84,7 @@
     };
   });
 
-  // date filter founded it on the web and modified a bit, it adds date suffixes after the day
+  // date filter found on the web and modified a bit, it adds date suffixes after the day
   app.filter('dateSuffix', function($filter) {
     var suffixes = ["th", "st", "nd", "rd"];
     return function(input) {
@@ -99,7 +100,7 @@
     };
   });
 
-  // setting xeditable theme
+  // setting xeditable theme that is used to edit activity title and pluosOners on the list page
   app.run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
   });

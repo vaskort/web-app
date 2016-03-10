@@ -11,23 +11,20 @@ angular.module('app.activitystore', [])
   return {
 
     list: function() {
-
       if (window.localStorage['activities']){
         return $q(function(resolve, reject){
           return resolve(angular.fromJson(window.localStorage['activities']));
         });
       }
-
       return $http.get(apiUrl + apiKey).then(function(response) {
         persist(response.data.items);
         return response.data.items;
       });
-
     },
 
     listItem: function(id){
       return this.list().then(function(response){
-        console.log(response);
+        // lodash used here
         return _.find(response, 'id', id);
       });
     },

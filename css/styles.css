@@ -10,7 +10,7 @@ body {font-family: 'Titillium Web', sans-serif;}
 .googleContainer ul li:last-child {border-bottom: 0;}
 .image {display:table-cell;float: none;min-width: 126px;}
 .image a {display:block;width: 100%;height:115px;background-position: center center;}
-.content {display: table-cell;float: none;padding:16px;vertical-align: top;position: relative;width:100%;max-width: 100px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.content {display: table-cell;float: none;padding:16px;vertical-align: top;position: relative;width:100%;max-width: 100px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;padding-top:8px;}
 .content h2 {margin:0;white-space: nowrap;overflow: hidden; text-overflow: ellipsis;width: 100%;}
 .content h2 a {text-decoration: none;}
 .bottomPart {position: absolute;left:16px;bottom: 16px;}
@@ -35,6 +35,7 @@ body {font-family: 'Titillium Web', sans-serif;}
 .loadMoreWrapper button.ng-hide-add, .loadMoreWrapper button.ng-hide-remove {transition: 0.5s linear all;}
 .description img {display: block;width: 100%;}
 .description .image {padding-top: 10px;padding-bottom: 10px;}
+.googleSignIn {display: inline-block;}
 /* page specific animations ------------------------ */
 .ng-leave {-webkit-animation: my_fade_animation .5s both ease-in;-moz-animation: my_fade_animation .5s both ease-in;animation: my_fade_animation .5s both ease-in;}
 .ng-enter {-webkit-animation:my_fade_in_animation 0.5s both ease-in;-moz-animation:my_fade_in_animation 0.5s both ease-in;animation:my_fade_in_animation 0.5s both ease-in;}

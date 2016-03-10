@@ -1,26 +1,26 @@
 <!-- search input on items tags -->
 <div class="filterWrapper"><input type="text" ng-model="item.title" placeholder="Search by title..." /></div>
 <ul>
-	<li ng-repeat="item in feed  | filter:item">
+	<li ng-repeat="item in feed | filter:item">
 		<!-- image -->
 		<div class="image">
-			<a ng-href="#/post/{{item.id}}" bg-img="{{item.object.attachments[0].image.url}}"></a>
+			<a ng-href="#/activity/{{item.id}}" bg-img="{{item.object.attachments[0].image.url}}"></a>
 		</div>
 		<!-- content part -->
 		<div class="content">
 			<!-- header -->
-			<h2 ng-controller="EditCtrl">
-				<a ng-href="#/post/{{item.id}}" editable-text="item.title" onaftersave="save()">{{item.title}}</a>
+			<h2>
+				<a editable-text="item.title" onaftersave="save()">{{item.title}}</a>
 			</h2>
 			<!-- bottom part links -->
 			<div class="bottomPart">
-				<div class="plusOners">
+				<div class="plusOners" editable-text="item.object.plusoners.totalItems" onaftersave="save()">
 					PlusOners: {{item.object.plusoners.totalItems}}
 				</div>
 				<div class="published">
 					Published: {{item.published | dateSuffix }}
 				</div>
-				<div class="flickrLink">
+				<div class="activityLink">
 					<a ng-href="{{item.url}}" target="_blank">View on Google+</a>
 				</div>
 			</div>

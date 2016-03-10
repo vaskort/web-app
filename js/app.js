@@ -1,5 +1,5 @@
 (function(){
-  var app = angular.module('app', ['ngRoute', 'directive.g+signin', 'ngAnimate', 'app.activitystore', 'xeditable']);
+  var app = angular.module('app', ['ngRoute', 'directive.g+signin', 'ngAnimate', 'app.activitystore', 'xeditable', 'ngSanitize']);
 
   app.config(function($routeProvider) {
   	$routeProvider
@@ -11,9 +11,9 @@
   			templateUrl: 'templates/list.html',
   			controller: 'GoogleCtrl'
   		})
-      .when('/post/:id', {
-  			templateUrl: 'templates/postDetail.html',
-  			controller: 'postDetailCtrl'
+      .when('/activity/:id', {
+  			templateUrl: 'templates/activityDetail.html',
+  			controller: 'activityDetailCtrl'
   		})
   		.otherwise({
   			redirectTo: '/'
@@ -24,44 +24,51 @@
 
     $scope.$on('event:google-plus-signin-success', function (event,authResult) {
       $location.path('list');
-      // apply() fixes that url is not changed
+      // apply() fixes a bug maybe that url does not get updated
       $scope.$apply();
     });
     $scope.$on('event:google-plus-signin-failure', function (event,authResult) {
       // Auth failure or signout detected
+      return;
     });
   });
 
   app.controller('GoogleCtrl', function($scope, $http, ActivityStore){
     ActivityStore.list().then(function(response){
-        $scope.feed = response;
-        $scope.feed = $scope.feedOriginal = $scope.feed.items;
-        console.log($scope.feed);
-        $scope.feed = $scope.feed.slice(0,5);
+        // $scope.feed = response;
+        console.log(response);
+
+        // bring the first five items
+        $scope.feed = response.slice(0,5);
 
     		$scope.add = function () {
     			// length of the first "short" array
-    			var itemsLength = $scope.feed.length;
-    			// length of the original array
-    			var itemsNewLength = $scope.feed.length + 5;
-    			for (var i = itemsLength; i < itemsNewLength; i++) {
-    				$scope.feed.push($scope.feedOriginal[i]);
+          var length = $scope.feed.length;
+          // push five more when load is clicked
+    			for (var i = length; i < length + 5; i++) {
+    				$scope.feed.push(response[i]);
     			}
     		};
 
     		$scope.hideButton = function(){
     			// if the length of the short array reaches the original array length then hide the button
-    			if ($scope.feed.length === $scope.feedOriginal.length){
+    			if ($scope.feed.length === response.length){
     				return true;
     			}
     		}
+
+        // save function that is triggered when you edit the title
+        $scope.save = function() {
+          ActivityStore.update(response);
+        };
+
       });
   });
 
-  app.controller('postDetailCtrl', function($scope, $routeParams, $controller, ActivityStore) {
-  	$scope.name = "postDetailCtrl";
-  	GoogleCtrl.get($routeParams.id).then(function(data){//we give the id from routeparams to get functon from frickrservice above so we can have returned the object we are looking for
-  		$scope.postItem = data; //we add photoitem property to scope
+  app.controller('activityDetailCtrl', function($scope, $routeParams, ActivityStore) {
+  	$scope.name = "activityDetailCtrl";
+  	ActivityStore.listItem($routeParams.id).then(function(response){
+  		$scope.activityItem = response; //we add activityItem property to scope
   	});
   });
 
@@ -90,14 +97,6 @@
       var suffix = (relevantDigits <= 3) ? suffixes[relevantDigits] : suffixes[0];
       return dtfilter+suffix+dtfilter2+dtfilter3+" at"+dtfilter4;
     };
-  });
-
-  app.controller('EditCtrl', function($scope, ActivityStore){
-
-    $scope.save = function() {
-      ActivityStore.update($scope.feedOriginal);
-    };
-
   });
 
   // setting xeditable theme

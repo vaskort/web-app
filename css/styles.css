@@ -1,5 +1,5 @@
 * {box-sizing:border-box;}
-a {color:#474E75;text-decoration: none;transition:all 0.5s;}
+a {color:#474E75;text-decoration: none;transition:all 0.2s;}
 a:hover {color:#6374D2}
 body {font-family: 'Titillium Web', sans-serif;}
 .bodyWrapper {width: 800px;margin:0 auto;}
@@ -20,13 +20,13 @@ body {font-family: 'Titillium Web', sans-serif;}
 .filterWrapper input {position: relative;border:1px solid grey;text-align: center;}
 .viewParent {float: left;width: 100%;position: relative;}
 /*photo details view*/
-.imageDetails {padding: 18px; list-style-type: none; float: left; width: 100%;max-height: 390px; overflow: auto; border: 2px solid #071146; position: absolute; top: 0; left: 0; right: 0;}
+.imageDetails {padding: 18px; list-style-type: none; float: left; width: 100%;max-height: 500px; overflow: auto; border: 2px solid #071146; position: absolute; top: 0; left: 0; right: 0;}
 .imageDetails h1 {margin: 0;font-size: 30px;text-align: left;width: calc(100% - 78px);float: left;line-height: 100%;}
 .imageDetails .plusOners, .imageDetails .published {display: inline-block;}
 .firstRow {width: 100%;margin-bottom: 5px;float: left;}
 .backButtonWrapper {display: block;vertical-align: top;float: right;position: relative;top:0;}
 .backButton {padding:4px 10px;display: block;position: relative;background-color:rgb(136, 183, 213);color:white;border-top-left-radius: 10px;border-bottom-left-radius: 10px;}
-.backButton:after {right: 87%; top: 50%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; border-color: rgba(136, 183, 213, 0); border-right-color: #88b7d5; border-width: 16px; margin-top: -16px;-webkit-transform:rotate(360deg)}
+.backButton:after {right: 85%; top: 50%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; border-color: rgba(136, 183, 213, 0); border-right-color: #88b7d5; border-width: 14px; margin-top: -14px;-webkit-transform:rotate(360deg)}
 .backButton, .backButton:hover {color:white;}
 .backButton:hover {-webkit-transform:scale(0.85);-ms-transform:scale(0.85);transform:scale(0.85);}
 .descriptionContent img {float: left;margin-right: 13px;}
@@ -34,6 +34,8 @@ body {font-family: 'Titillium Web', sans-serif;}
 .loadMoreWrapper button {background-color: rgb(136, 183, 213);color:white;border:0;transition:all 0.5s;outline:none;margin-top: 10px;margin-bottom: 10px;}
 .loadMoreWrapper button:active, .loadMoreWrapper button:hover {-webkit-transform:scale(0.85);-ms-transform:scale(0.85);transform:scale(0.85);}
 .loadMoreWrapper button.ng-hide-add, .loadMoreWrapper button.ng-hide-remove {transition: 0.5s linear all;}
+.description img {display: block;width: 100%;}
+.description .image {padding-top: 10px;padding-bottom: 10px;}
 
 
 /* page specific animations ------------------------ */

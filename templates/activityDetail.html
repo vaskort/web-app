@@ -1,0 +1,33 @@
+<div class="imageDetails">
+	<!-- title and back button -->
+	<div class="firstRow">
+		<h1>{{activityItem.title}}</h1>
+		<!-- back button -->
+		<div class="backButtonWrapper">
+			<a ng-href="#/list" class="backButton">
+				Back
+			</a>
+		</div>
+	</div>
+	<!-- author link -->
+	<div class="plusOners">
+		PlusOners: {{activityItem.object.plusoners.totalItems}}
+	</div>
+	<!-- published date -->
+	<div class="published">
+		| Published: {{activityItem.published | dateSuffix }}
+	</div>
+	<!-- main area with image and description -->
+	<div class="detailedWraper">
+		<div class="description">
+			<div class="image">
+				<img ng-src="{{activityItem.object.attachments[0].image.url}}" alt="Activity Image">
+			</div>
+			<div class="descriptionContent lead" ng-bind-html="activityItem.object.content">
+			</div>
+			<div class="activityLink">
+				<a ng-href="{{activityItem.url}}" target="_blank">View on Google+</a>
+			</div>
+		</div>
+	</div>
+</div>

@@ -4,8 +4,8 @@ angular.module('app.activitystore', [])
     var apiUrl = 'https://www.googleapis.com/plus/v1/people/%2Bbusuu/activities/public?key=';
     var apiKey = 'AIzaSyC2e1nGsZYDOQF8_FrOGddwEgd6T0BAvUg';
 
-    function persist(item) {
-      window.localStorage['activities'] = angular.toJson(item);
+    function persist() {
+      window.localStorage['activities'] = angular.toJson(activities);
     }
 
     function giveActivities() {
@@ -21,8 +21,8 @@ angular.module('app.activitystore', [])
 	    },
 
       update: function(item) {
-        persist(item);
-	    },
+        persist();
+	    }
 
     };
 	});

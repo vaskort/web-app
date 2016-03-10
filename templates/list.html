@@ -9,7 +9,9 @@
 		<!-- content part -->
 		<div class="content">
 			<!-- header -->
-			<h2><a ng-href="#/post/{{item.id}}">{{item.title}}</a></h2>
+			<h2 ng-controller="EditCtrl">
+				<a ng-href="#/post/{{item.id}}" editable-text="item.title" onaftersave="save()">{{item.title}}</a>
+			</h2>
 			<!-- bottom part links -->
 			<div class="bottomPart">
 				<div class="plusOners">

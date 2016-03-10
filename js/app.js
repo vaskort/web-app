@@ -1,5 +1,5 @@
 (function(){
-  var app = angular.module('app', ['ngRoute', 'directive.g+signin', 'ngAnimate']);
+  var app = angular.module('app', ['ngRoute', 'directive.g+signin', 'ngAnimate', 'app.activitystore', 'xeditable']);
 
   app.config(function($routeProvider) {
   	$routeProvider
@@ -32,9 +32,8 @@
     });
   });
 
-  app.controller('GoogleCtrl', function($scope, $http){
-    $http.get('https://www.googleapis.com/plus/v1/people/%2Bbusuu/activities/public?key=AIzaSyC2e1nGsZYDOQF8_FrOGddwEgd6T0BAvUg')
-      .success(function(response){
+  app.controller('GoogleCtrl', function($scope, $http, ActivityStore){
+    ActivityStore.list().then(function(response){
         $scope.feed = response;
         $scope.feed = $scope.feedOriginal = $scope.feed.items;
         console.log($scope.feed);
@@ -49,7 +48,7 @@
     				$scope.feed.push($scope.feedOriginal[i]);
     			}
     		};
-        
+
     		$scope.hideButton = function(){
     			// if the length of the short array reaches the original array length then hide the button
     			if ($scope.feed.length === $scope.feedOriginal.length){
@@ -59,7 +58,7 @@
       });
   });
 
-  app.controller('postDetailCtrl', function($scope, $routeParams, $controller, GoogleCtrl) {
+  app.controller('postDetailCtrl', function($scope, $routeParams, $controller, ActivityStore) {
   	$scope.name = "postDetailCtrl";
   	GoogleCtrl.get($routeParams.id).then(function(data){//we give the id from routeparams to get functon from frickrservice above so we can have returned the object we are looking for
   		$scope.postItem = data; //we add photoitem property to scope
@@ -91,6 +90,19 @@
       var suffix = (relevantDigits <= 3) ? suffixes[relevantDigits] : suffixes[0];
       return dtfilter+suffix+dtfilter2+dtfilter3+" at"+dtfilter4;
     };
+  });
+
+  app.controller('EditCtrl', function($scope, ActivityStore){
+
+    $scope.save = function() {
+      ActivityStore.update($scope.feedOriginal);
+    };
+
+  });
+
+  // setting xeditable theme
+  app.run(function(editableOptions) {
+    editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
   });
 
 }());

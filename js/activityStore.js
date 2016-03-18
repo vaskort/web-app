@@ -1,7 +1,7 @@
 angular.module('app.activitystore', [])
 .factory('ActivityStore', function($http, $q) {
 
-  var apiUrl = 'https://www.googleapis.com/plus/v1/people/%2Bbusuu/activities/public?key=';
+  var apiUrl = 'https://www.googleapis.com/plus/v1/people/%2Bgoogle/activities/public?key=';
   var apiKey = 'AIzaSyC2e1nGsZYDOQF8_FrOGddwEgd6T0BAvUg';
 
   function persist(activities) {
